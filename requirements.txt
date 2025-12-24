@@ -1,0 +1,14 @@
+gymnasium==1.2.1
+matplotlib==3.10.8
+numba==0.61.2
+numpy==2.4.0
+pandas==2.3.3
+psutil==5.9.0
+scikit_learn==1.8.0
+scipy==1.16.3
+seaborn==0.13.2
+snntorch==0.9.4
+torch==2.8.0
+torchvision==0.23.0
+tqdm==4.67.1
+umap_learn==0.5.9.post2
