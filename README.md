@@ -31,8 +31,8 @@ This work investigates how **dissipative temporal dynamics** act as an inductive
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/temporal-constraint-generalization.git
-cd temporal-constraint-generalization
+git clone https://github.com/chenxiachan/Constraint-breeds-generalization.git
+cd Constraint-breeds-generalization
 
 # Create virtual environment (recommended)
 python -m venv venv
@@ -88,7 +88,12 @@ Evaluates generalization to unseen physical regimes in reinforcement learning.
 
 ```bash
 cd "2_Experiment 3/code/0_Encoding"
+
+# Train with fixed episode length
 python 0_rl_train_fixed_episodes.py
+
+# Train with early stopping
+python 0_rl_train_earlystop.py
 ```
 
 #### 2. Architecture-Level Experiments (CLI Support)
@@ -103,8 +108,8 @@ cd "../1_Architecture"
 # Run full Beta Sweep (default)
 python 00_rl_REIN_Cartpole.py --mode beta_sweep --runs 3
 
-# Run a Quick Test for a specific agent
-python 00_rl_REIN_Cartpole.py --mode quick_test --agent_type rleaky_fixed --beta 0.9
+# Run Single Agent Training
+python 00_rl_REIN_Cartpole.py --mode single_agent --agent_type ann --runs 5
 ```
 
 ##### LunarLander (PPO) - Supports Parallel Execution
@@ -157,4 +162,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📬 Contact
 
-For questions or collaboration, please open an issue or contact [your.email@example.com].
+For questions or collaboration, please open an issue or contact [x.c.chen@tum.de].
