@@ -8,7 +8,7 @@ Official implementation of the paper **"Constraint Breeds Generalization: Tempor
 
 ## 📖 Overview
 
-This work investigates how **dissipative temporal dynamics** act as an inductive bias to enable neural network generalization. We demonstrate that physical constraints embedded in dynamical systems—particularly the transition regime of the Duffing oscillator—promote:
+This work investigates how **dissipative temporal dynamics** act as an inductive bias to enable neural network generalization. We demonstrate that physical constraints embedded in dynamical systems promote:
 
 1. **Cross-encoding invariance** - Networks trained with transition dynamics generalize across unseen encodings
 2. **Structured feature emergence** - Self-organized receptive fields resembling biological V1 cells
@@ -132,33 +132,6 @@ python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type leaky_
 - Training curves across difficulty levels
 - Generalization gap analysis (Easy → Very Hard)
 - β-sweep results for SNN membrane dynamics
-
-## 🔧 Core Components
-
-### Dynamic Encoder (`encoding.py`)
-
-Implements the Duffing oscillator transformation:
-
-```python
-from core.encoding_wrapper import DynamicEncoder, EncodingConfig
-
-config = EncodingConfig(delta=2.0, encoding_steps=50)
-encoder = DynamicEncoder(config)
-encoded_sequence = encoder.encode(raw_input)
-```
-
-### SNN Models (`model_dup.py`)
-
-```python
-from core.model_dup import SimpleSNN
-
-model = SimpleSNN(
-    input_size=28*28,
-    hidden_size=256,
-    output_size=10,
-    beta=0.5  # Membrane leak parameter
-)
-```
 
 ## 📚 Citation
 
