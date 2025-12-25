@@ -106,7 +106,7 @@ The RL scripts support various command-line arguments for flexibility.
 cd "../1_Architecture"
 
 # Run full Beta Sweep (default)
-python 00_rl_REIN_Cartpole.py --mode beta_sweep --runs 3
+python 00_rl_REIN_Cartpole.py --mode beta_sweep --runs 5
 
 # Run Single Agent Training
 python 00_rl_REIN_Cartpole.py --mode single_agent --agent_type ann --runs 5
@@ -117,10 +117,10 @@ python 00_rl_REIN_Cartpole.py --mode single_agent --agent_type ann --runs 5
 ```bash
 # Run full Beta Sweep in Parallel (Recommended)
 # Automatically uses optimal worker count based on CPU cores
-python 00_rl_PPO_Lunarlander_parallel.py --mode beta_sweep --parallel --runs 3
+python 00_rl_PPO_Lunarlander_parallel.py --mode beta_sweep --parallel --runs 5
 
 # Run Single Agent Training (e.g., for debugging or specific analysis)
-python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type leaky_fixed --beta 0.7 --runs 5
+python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type lstm --runs 5
 ```
 
 **Common Arguments for Exp 3:**
@@ -143,11 +143,11 @@ python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type leaky_
 If you find this work useful, please cite:
 
 ```bibtex
-@article{author2024constraint,
+@article{xia2026constraint,
   title={Constraint Breeds Generalization: Temporal Dynamics as an Inductive Bias},
-  author={Author Names},
+  author={Xia Chen},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2024}
+  year={2026}
 }
 ```
 
@@ -162,4 +162,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📬 Contact
 
-For questions or collaboration, please open an issue or contact [x.c.chen@tum.de].
+For questions or collaboration, please open an issue or contact [x.c.chen@tum.de](mailto:x.c.chen@tum.de).
