@@ -51,3 +51,6 @@ logs/
 
 # Jupyter
 .ipynb_checkpoints
+
+# Exceptions (Allow specific assets)
+!*.gif
