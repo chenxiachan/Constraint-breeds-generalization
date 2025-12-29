@@ -12,11 +12,11 @@ Conventional deep learning often equates generalization with unconstrained scali
 
 Through a phase-space analysis of signal propagation, we reveal that a critical **"transition" regime** poised between expansive noise amplification and excessive dissipative compression, maximizes generalization capabilities. We validate this principle across three scales:
 
-| Scale | Experiment | Key Finding |
+| Scale | Task | Key Finding |
 | :--- | :--- | :--- |
-| **Representational** | [Exp 1] Cross-Encoding Classification | Networks trained with transition dynamics generalize to unseen encodings. |
-| **Structural** | [Exp 2] Unsupervised Learning | Spontaneous emergence of structured receptive fields. |
-| **Behavioral** | [Exp 3] Zero-Shot RL | Robust policy transfer to unseen physical regimes in robotic control. |
+| **Exp 1: Representational** | Cross-Encoding Classification | Networks trained with transition dynamics generalize to unseen encodings. |
+| **Exp 2: Structural** | Unsupervised Learning | Spontaneous emergence of structured receptive fields. |
+| **Exp 3: Behavioral** | Zero-Shot RL | Robust policy transfer to unseen physical regimes in robotic control. |
 
 ## 🚀 Quick Start
 
@@ -50,8 +50,8 @@ python 0_main_Fig1.py
 
 > Spontaneous structure formation under transition dynamics
 
-![alt text](<1_Experiment 2/output/Figure_2/rf_evolution_combined.gif>)
-![alt text](<1_Experiment 2/output/Figure_2/fine_scan_evolution.gif>)
+<!-- ![alt text](<1_Experiment 2/output/Figure_2/rf_evolution_combined.gif>) -->
+<!-- ![alt text](<1_Experiment 2/output/Figure_2/fine_scan_evolution.gif>) -->
 
 ```bash
 cd "1_Experiment 2/code"
@@ -96,21 +96,6 @@ python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type lstm -
 }
 ```
 
-## 📁 Structure
-
-<details>
-<summary>Click to expand file tree</summary>
-
-```text
-.
-├── 0_Experiment 1/          # Cross-encoding generalization
-├── 1_Experiment 2/          # Receptive field emergence
-├── 2_Experiment 3/          # Zero-shot RL transfer
-├── requirements.txt
-└── README.md
-```
-
-</details>
 
 ## 📬 Contact
 
