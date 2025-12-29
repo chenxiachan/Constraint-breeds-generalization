@@ -8,14 +8,14 @@ Official implementation of the paper **"Constraint Breeds Generalization: Tempor
 
 ## 📖 Overview
 
-Conventional deep learning often equates generalization with unconstrained scaling. In contrast, biological systems operate under strict metabolic constraints. This work demonstrates that these **physical constraints act as a fundamental temporal inductive bias**, compelling systems to abstract robust invariants from noisy sensory streams.
+Conventional deep learning often equates generalization with unconstrained scaling. In contrast, biological systems operate under strict metabolic constraints. This work demonstrates that these **dissipative constraints act as a fundamental temporal inductive bias**, compelling systems to abstract robust invariants from noisy sensory streams.
 
-Through a phase-space analysis of signal propagation, we reveal that a critical **"transition" regime**—poised between expansive noise amplification and excessive dissipative compression—maximizes generalization capabilities. We validate this principle across three scales:
+Through a phase-space analysis of signal propagation, we reveal that a critical **"transition" regime** poised between expansive noise amplification and excessive dissipative compression, maximizes generalization capabilities. We validate this principle across three scales:
 
 | Scale | Experiment | Key Finding |
 | :--- | :--- | :--- |
-| **Representational** | [Exp 1] Cross-Encoding | Networks trained with transition dynamics generalize to unseen encodings. |
-| **Structural** | [Exp 2] Receptive Fields | Spontaneous emergence of biological V1-like spatial filters. |
+| **Representational** | [Exp 1] Cross-Encoding Classification | Networks trained with transition dynamics generalize to unseen encodings. |
+| **Structural** | [Exp 2] Unsupervised Learning | Spontaneous emergence of structured receptive fields. |
 | **Behavioral** | [Exp 3] Zero-Shot RL | Robust policy transfer to unseen physical regimes in robotic control. |
 
 ## 🚀 Quick Start
@@ -48,7 +48,10 @@ python 0_main_Fig1.py
 
 ### 2. Receptive Field Emergence
 
-> Spontaneous V1-like structure formation under transition dynamics
+> Spontaneous structure formation under transition dynamics
+
+![alt text](<1_Experiment 2/output/Figure_2/rf_evolution_combined.gif>)
+![alt text](<1_Experiment 2/output/Figure_2/fine_scan_evolution.gif>)
 
 ```bash
 cd "1_Experiment 2/code"
