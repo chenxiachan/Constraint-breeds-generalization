@@ -51,8 +51,8 @@ python 0_main_Fig1.py
 
 > Observe the spontaneous formation of structured filters under transition dynamics.
 
-<!-- ![alt text](<1_Experiment 2/output/Figure_2/rf_evolution_combined.gif>) -->
-<!-- ![alt text](<1_Experiment 2/output/Figure_2/fine_scan_evolution.gif>) -->
+<!-- ![alt text](<1_Experiment 2/output/rf_evolution_combined.gif>) -->
+<!-- ![alt text](<1_Experiment 2/output/fine_scan_evolution.gif>) -->
 
 ```bash
 cd "1_Experiment 2/code"
