@@ -1,5 +1,6 @@
 # Constraint Breeds Generalization: Temporal Dynamics as an Inductive Bias
 
+[![arXiv](https://img.shields.io/badge/arXiv-2512.23916-b31b1b.svg)](https://arxiv.org/abs/2512.23916)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
