@@ -89,11 +89,11 @@ python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type lstm -
 ## 📚 Citation
 
 ```bibtex
-@article{xia2026constraint,
+@article{xia2025constraint,
   title={Constraint Breeds Generalization: Temporal Dynamics as an Inductive Bias},
   author={Xia Chen},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2026}
+  journal={arXiv preprint arXiv:2512.23916},
+  year={2025}
 }
 ```
 
