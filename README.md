@@ -26,9 +26,7 @@ We implement dissipative constraints through two complementary pathways, confirm
 
 | **1. Encoding-Level Constraint** | **2. Architecture-Level Constraint** |
 | :--- | :--- |
-| <img width="606" height="299" alt="image" src="https://github.com/user-attachments/assets/f5425401-1705-40a0-a3ea-db1bd8cae7f3" />
- | <img width="558" height="320" alt="image" src="https://github.com/user-attachments/assets/2487ac63-9304-4287-990e-44ca9be74216" />
- |
+| <img width="606" height="299" alt="image" src="https://github.com/user-attachments/assets/f5425401-1705-40a0-a3ea-db1bd8cae7f3" /> | <img width="558" height="320" alt="image" src="https://github.com/user-attachments/assets/2487ac63-9304-4287-990e-44ca9be74216" /> |
 | Input features are transformed into temporal trajectories via **Constrained Dynamical Systems** ($\delta$). | Intrinsic dissipation is controlled via the ** Membrane Leak** ($\beta$). |
 |*Exp 1-3* | *Exp 3* |
 
