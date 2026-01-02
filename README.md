@@ -42,6 +42,7 @@ pip install -r requirements.txt
 ### 1. Cross-Encoding Generalization
 
 > Investigate how SNNs trained on specific dynamics generalize to others.
+
 <img width="1951" height="1127" alt="Figure1" src="https://github.com/user-attachments/assets/0d5f2a35-88c7-4534-85bd-06f407a7d779" />
 
 
@@ -53,6 +54,7 @@ python 0_main_Fig1.py
 ### 2. Receptive Field Emergence
 
 > Observe the spontaneous formation of structured filters under transition dynamics.
+
 ![rf_evolution_combined](https://github.com/user-attachments/assets/6a9bf386-3855-496d-ad89-b299da53ee32)
 
 <!-- ![alt text](<1_Experiment 2/output/rf_evolution_combined.gif>) -->
@@ -67,6 +69,7 @@ python 0_Appendix_Fig4.py    # Information Bottleneck Analysis
 ### 3. Zero-Shot RL Transfer
 
 > Generalization to unseen physical dynamics in CartPole & LunarLander
+
 ![cartpole_comparison_grid](https://github.com/user-attachments/assets/47258bcd-0aa3-4eea-a790-9ed13799c70a)
 ![lunarlander_transfer_grid_clean](https://github.com/user-attachments/assets/386eae11-6f8b-4a80-b647-2794e87d4d60)
 
