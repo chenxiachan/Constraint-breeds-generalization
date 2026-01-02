@@ -43,19 +43,16 @@ pip install -r requirements.txt
 
 > Investigate how SNNs trained on specific dynamics generalize to others.
 
-<img width="1951" height="1127" alt="Figure1" src="https://github.com/user-attachments/assets/0d5f2a35-88c7-4534-85bd-06f407a7d779" />
-
 
 ```bash
 cd "0_Experiment 1/code"
 python 0_main_Fig1.py
 ```
+<img width="1951" height="1127" alt="Figure1" src="https://github.com/user-attachments/assets/0d5f2a35-88c7-4534-85bd-06f407a7d779" />
 
 ### 2. Receptive Field Emergence
 
 > Observe the spontaneous formation of structured filters under transition dynamics.
-
-![rf_evolution_combined](https://github.com/user-attachments/assets/6a9bf386-3855-496d-ad89-b299da53ee32)
 
 <!-- ![alt text](<1_Experiment 2/output/rf_evolution_combined.gif>) -->
 <!-- ![alt text](<1_Experiment 2/output/fine_scan_evolution.gif>) -->
@@ -66,12 +63,11 @@ python 0_main_Fig2.py        # Main Learning
 python 0_Appendix_Fig4.py    # Information Bottleneck Analysis
 ```
 
+![rf_evolution_combined](https://github.com/user-attachments/assets/6a9bf386-3855-496d-ad89-b299da53ee32)
+
 ### 3. Zero-Shot RL Transfer
 
 > Generalization to unseen physical dynamics in CartPole & LunarLander
-
-![cartpole_comparison_grid](https://github.com/user-attachments/assets/47258bcd-0aa3-4eea-a790-9ed13799c70a)
-![lunarlander_transfer_grid_clean](https://github.com/user-attachments/assets/386eae11-6f8b-4a80-b647-2794e87d4d60)
 
 #### Encoding-Level Tests
 
@@ -94,6 +90,9 @@ python 00_rl_REIN_Cartpole.py --mode single_agent --agent_type ann --runs 5 # Si
 python 00_rl_PPO_Lunarlander_parallel.py --mode beta_sweep --parallel --runs 5
 python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type lstm --runs 5
 ```
+
+![cartpole_comparison_grid](https://github.com/user-attachments/assets/47258bcd-0aa3-4eea-a790-9ed13799c70a)
+![lunarlander_transfer_grid_clean](https://github.com/user-attachments/assets/386eae11-6f8b-4a80-b647-2794e87d4d60)
 
 ## 📚 Citation
 
