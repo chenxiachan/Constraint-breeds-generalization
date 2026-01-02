@@ -77,7 +77,7 @@ python 0_rl_train_fixed_episodes.py # Standard training
 python 0_rl_train_earlystop.py      # Early stopping
 ```
 
-#### Architecture-Level Tests (CLI)
+#### Architecture-Level Tests
 
 ```bash
 cd "2_Experiment 3/code/1_Architecture"
