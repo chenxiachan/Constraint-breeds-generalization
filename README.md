@@ -43,11 +43,11 @@ pip install -r requirements.txt
 
 > Investigate how SNNs trained on specific dynamics generalize to others.
 
-
 ```bash
 cd "0_Experiment 1/code"
 python 0_main_Fig1.py
 ```
+
 <img width="1951" height="1127" alt="Figure1" src="https://github.com/user-attachments/assets/0d5f2a35-88c7-4534-85bd-06f407a7d779" />
 
 ### 2. Receptive Field Emergence
