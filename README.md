@@ -1,6 +1,5 @@
 # Constraint Breeds Generalization: Temporal Dynamics as an Inductive Bias
 
-[![arXiv](https://img.shields.io/badge/arXiv-2512.23916-b31b1b.svg)](https://arxiv.org/abs/2512.23916)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -27,7 +26,7 @@ We implement dissipative constraints through two complementary pathways, confirm
 | **1. Encoding-Level Constraint** | **2. Architecture-Level Constraint** |
 | :--- | :--- |
 | <img width="606" height="299" alt="image" src="https://github.com/user-attachments/assets/37d56f44-56b6-4245-99f8-ed49b5d8c20a" />| <img width="560" height="315" alt="image" src="https://github.com/user-attachments/assets/d4d40b29-544b-4648-8dee-51fc645ab634" /> |
-| Static input features are transformed into temporal trajectories via **Constrained Dynamical Systems** ($\delta$). | Sequential inputs, dissipation is controlled via the Network **Membrane Leak** ($\beta$). |
+| Static input features are transformed into temporal trajectories via **Duffing Oscillators** ($\delta$). | Intrinsic dissipation is controlled via the **SNN Membrane Leak** ($\beta$). |
 |*Exp 1-3* | *Exp 3* |
 
 
@@ -36,7 +35,7 @@ We implement dissipative constraints through two complementary pathways, confirm
 ### 1. Clone
 
 ```bash
-git clone https://github.com/chenxiachan/Constraint-breeds-generalization.git
+git clone https://github.com/Anonymous/Constraint-breeds-generalization.git
 cd Constraint-breeds-generalization
 ```
 
@@ -105,19 +104,7 @@ python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type lstm -
 ![cartpole_comparison_grid](https://github.com/user-attachments/assets/47258bcd-0aa3-4eea-a790-9ed13799c70a)
 ![lunarlander_transfer_grid_clean](https://github.com/user-attachments/assets/386eae11-6f8b-4a80-b647-2794e87d4d60)
 
-## 📚 Citation
-
-```bibtex
-@article{xia2025constraint,
-  title={Constraint Breeds Generalization: Temporal Dynamics as an Inductive Bias},
-  author={Xia Chen},
-  journal={arXiv preprint arXiv:2512.23916},
-  year={2025}
-}
-```
-
-
 ## 📬 Contact
 
-For collaboration or questions, please contact [x.c.chen@tum.de](mailto:x.c.chen@tum.de).
+For collaboration or questions, please open an issue.
 Licensed under the [MIT License](LICENSE).
