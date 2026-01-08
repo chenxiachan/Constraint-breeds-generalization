@@ -35,7 +35,7 @@ We implement dissipative constraints through two complementary pathways, confirm
 ### 1. Clone
 
 ```bash
-git clone https://github.com/Anonymous/Constraint-breeds-generalization.git
+git clone ...
 cd Constraint-breeds-generalization
 ```
 
