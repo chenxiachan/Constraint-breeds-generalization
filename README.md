@@ -101,7 +101,7 @@ python 00_rl_PPO_Lunarlander_parallel.py --mode beta_sweep --parallel --runs 5
 python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type lstm --runs 5
 ```
 
-![cartpole_comparison_grid](https://github.com/user-attachments/assets/47258bcd-0aa3-4eea-a790-9ed13799c70a)
+![cartpole_comparison_grid](https://github.com/user-attachments/assets/6d1c32bb-130e-43bb-a07d-c65fa6e8b545)
 ![lunarlander_transfer_grid_clean](https://github.com/user-attachments/assets/386eae11-6f8b-4a80-b647-2794e87d4d60)
 
 ## 📬 Contact
