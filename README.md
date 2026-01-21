@@ -2,7 +2,7 @@
 
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg)](https://pytorch.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 Official implementation of the paper **"Constraint Breeds Generalization: Temporal Dynamics as an Inductive Bias"**.
 <img width="890" height="235" alt="image" src="https://github.com/user-attachments/assets/6ac41b82-deec-4937-8eea-50d67eace111" />
@@ -107,4 +107,3 @@ python 00_rl_PPO_Lunarlander_parallel.py --mode single_agent --agent_type lstm -
 ## 📬 Contact
 
 For collaboration or questions, please open an issue.
-Licensed under the [MIT License](LICENSE).
