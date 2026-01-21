@@ -75,6 +75,17 @@ python 0_Appendix_Fig4.py    # Information Bottleneck Analysis
 
 ![rf_evolution_combined](https://github.com/user-attachments/assets/6a9bf386-3855-496d-ad89-b299da53ee32)
 
+<details>
+<summary><strong>View Additional Dynamics (Lorenz, Thomas, Fine Scan)</strong></summary>
+
+| Lorenz System | Thomas Attractor |
+| :---: | :---: |
+| ![lorenz](<1_Experiment 2/output/lorenz_evolution.gif>) | ![thomas](<1_Experiment 2/output/thomas_evolution.gif>) |
+
+**Fine-grained parameter scan:**
+![fine_scan](<1_Experiment 2/output/fine_scan_evolution.gif>)
+</details>
+
 ### 3. Zero-Shot RL Transfer
 
 > Generalization to unseen physical dynamics in CartPole & LunarLander
