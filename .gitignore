@@ -54,3 +54,10 @@ logs/
 
 # Exceptions (Allow specific assets)
 !*.gif
+
+# Allow Rebuttal outputs (figures, data, models)
+!Rebuttal/**/output/
+!Rebuttal/**/*.png
+!Rebuttal/**/*.csv
+!Rebuttal/**/*.pth
+!Rebuttal/**/*.json
