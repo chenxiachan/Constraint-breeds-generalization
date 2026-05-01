@@ -1,7 +1,0 @@
-encoding,id_acc_mean,id_acc_std,ood_acc_mean,ood_acc_std,spectral_centroid,spectral_entropy
-Duffing Expansive (d=-1.5),93.1,1.06,35.01,5.47,0.0653,0.7903
-Duffing Critical (d=0.0),93.91,2.34,89.33,2.2,0.064,0.9044
-Duffing Transition (d=2.0),94.54,1.51,89.85,2.11,0.0596,0.8936
-Duffing Dissipative (d=10.0),94.8,1.01,88.57,1.0,0.0416,0.8822
-Exponential Decay,93.28,1.56,87.12,2.85,0.0468,1.0295
-Gaussian Smoothed,95.57,1.64,67.6,4.44,0.069,1.1481
