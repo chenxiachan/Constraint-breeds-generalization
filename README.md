@@ -75,14 +75,17 @@ python 0_Appendix_Fig4.py    # Information Bottleneck Analysis
 
 ![rf_evolution_combined](https://github.com/user-attachments/assets/6a9bf386-3855-496d-ad89-b299da53ee32)
 
-<details>
-<summary><strong>View Additional Dynamics (Lorenz, Thomas, Fine Scan)</strong></summary>
+**Cross-system universality:** The same predictive principle holds across distinct dynamical systems with very different nonlinearities.
 
 | Lorenz System | Thomas Attractor |
 | :---: | :---: |
 | ![lorenz](<1_Experiment 2/output/lorenz_evolution.gif>) | ![thomas](<1_Experiment 2/output/thomas_evolution.gif>) |
 
-**Fine-grained parameter scan:**
+<details>
+<summary><strong>View Fine-Grained Parameter Scan</strong></summary>
+
+A high-resolution sweep of the dissipation parameter $\delta$ reveals the structural ridge persists across the dynamical landscape.
+
 ![fine_scan](<1_Experiment 2/output/fine_scan_evolution.gif>)
 </details>
 
