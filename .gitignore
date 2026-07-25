@@ -61,3 +61,12 @@ logs/
 !Rebuttal/**/*.csv
 !Rebuttal/**/*.pth
 !Rebuttal/**/*.json
+
+# Allow NeurIPS Additional_Experiments outputs (figures, data, models)
+!Additional_Experiments/**/output/
+!Additional_Experiments/**/*.png
+!Additional_Experiments/**/*.csv
+!Additional_Experiments/**/*.pth
+!Additional_Experiments/**/*.json
+!Additional_Experiments/**/*.md
+!Additional_Experiments/**/*.txt

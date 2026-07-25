@@ -23,7 +23,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 
-from v1_receptive_field_learning import (
+from core.v1_receptive_field_learning import (
     NaturalImagePatches,
     V1_SNN_Autoencoder,
     ensure_dir,

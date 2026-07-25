@@ -1,0 +1,17 @@
+# Additional Experiments
+
+Controlled follow-up experiments extending the main results. Each folder addresses a specific question about the paper and contains `code/` (self-contained, reusing the original codebase where applicable) and `output/` (data + figures).
+
+| # | Folder | Question addressed | Key result |
+|---|--------|--------------------|------------|
+| 1 | `1_Matched_Temporal_Filtering` | Separate LIF low-pass filtering from spiking/recurrence/pooling: MLP baselines with matched temporal filtering (β=0.95), identical encoded inputs, N=10 | Matched-filter MLP ≥ SNN under dissipative encodings (94.9±1.7 vs 90.6±2.5, δ=2); under critical encoding (δ=0) only architecture-internal dissipation generalizes (SNN 90.0±2.0 vs 65.3–68.8 all MLP variants; Cliff's δ=1.0) |
+| 2 | `2_DeltaBeta_Landscape_Statistics` | Joint δ×β landscape (5×5×5 runs) + statistical tests | Crossover interaction (permutation p=1e-4): at low β the encoding ordering reverses — inconsistent with a β-intrinsic firing-rate/optimization artifact |
+| 3 | `3_RL_Significance_Tests` | Significance tests for the encoding-level RL comparisons (N=10 per condition, per-run data) | Dissipative encoding vs raw input: retention 50.2±16.9% vs 10.6±4.5% (Welch p=4.3e-5, Cliff's δ=+1.00), for both SNN and ANN substrates; within-family orderings directional but n.s. |
+| 4 | `4_HeldOut_Reconstruction` | Exp 2 reconstruction loss on training vs held-out patches (report both) | Held-out ≈ train for all 8 conditions (gap ratios 0.97–1.01, 5 seeds); reconstruction fidelity is not the discriminating metric between regimes |
+| 5 | `5_NonSpiking_Autoencoder_Control` | Could a feedforward (non-spiking) autoencoder develop similar receptive-field structure? | No: ReLU autoencoder on identical encodings shows flat OSI 0.08–0.13 across all regimes (SNN: 0.34–0.37) and diverges under expansive encoding |
+| 6 | `6_Initialization_Robustness` | Robustness to the oscillator initialization (v, 0.2v, −v) | Four alternative init schemes: mean OOD 87.6–90.2% vs 90.3±2.5% original — results do not depend on the choice |
+| 7 | `7_Dissipation_vs_Smoothing` | Dissipation vs generic temporal smoothing / low-pass filtering (matched controls) | Duffing 89.9±2.1% ≈ exponential decay 87.1±2.9% ≫ Gaussian smoothing 67.6±4.4%: the operative factor is dissipative temporal structure (+19.5 pts), not the specific oscillator |
+| 8 | `8_Feature_Quality_OSI` | Direct feature-structure measure beyond σ_RF | Orientation Selectivity Index (2D FFT): Transition 0.34 vs ≤0.17 for all seven other conditions; trained model weights included |
+| 9 | `9_Architecture_BetaSweep_CartPole` | Per-run statistics for the architecture-level β-sweep (Exp 5) | Low-β collapse decisive for both variants (p=0.004, Cliff's δ=1.0); recurrent RLeaky shows the full non-monotonic profile with both ends collapsing (188.9±6.3 at β=0.5 vs 15.3±0.2 at β=0.1 and 33.0±13.6 at β=1.0) |
+
+Environment: `pip install -r ../requirements.txt`. Scripts import shared modules from the original experiment folders via relative paths.

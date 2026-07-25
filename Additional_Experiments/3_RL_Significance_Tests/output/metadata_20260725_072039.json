@@ -1,0 +1,104 @@
+{
+  "timestamp": "20260725_072039",
+  "version": "Enhanced",
+  "groups": [
+    "diss_snn",
+    "tran_snn",
+    "exp_snn",
+    "ann_raw",
+    "ann_diss",
+    "ann_tran",
+    "ann_exp"
+  ],
+  "num_runs_per_group": 10,
+  "total_experiments": 70,
+  "effects": {
+    "encoding_effect_snn": 6.992333333333342,
+    "encoding_effect_ann": 14.457,
+    "network_effect_diss": 16.763000000000012,
+    "network_effect_tran": -6.233666666666643,
+    "network_effect_exp": 9.298333333333353
+  },
+  "ranking": [
+    {
+      "group": "ann_diss",
+      "avg_gap": 46.45099999999999
+    },
+    {
+      "group": "tran_snn",
+      "avg_gap": 57.81000000000001
+    },
+    {
+      "group": "ann_exp",
+      "avg_gap": 60.907999999999994
+    },
+    {
+      "group": "diss_snn",
+      "avg_gap": 63.214000000000006
+    },
+    {
+      "group": "ann_tran",
+      "avg_gap": 64.04366666666665
+    },
+    {
+      "group": "exp_snn",
+      "avg_gap": 70.20633333333335
+    },
+    {
+      "group": "ann_raw",
+      "avg_gap": 147.907
+    }
+  ],
+  "training_episodes": {
+    "diss_snn": {
+      "mean": 2000.0,
+      "min": 2000,
+      "max": 2000
+    },
+    "tran_snn": {
+      "mean": 2000.0,
+      "min": 2000,
+      "max": 2000
+    },
+    "exp_snn": {
+      "mean": 2000.0,
+      "min": 2000,
+      "max": 2000
+    },
+    "ann_raw": {
+      "mean": 2000.0,
+      "min": 2000,
+      "max": 2000
+    },
+    "ann_diss": {
+      "mean": 2000.0,
+      "min": 2000,
+      "max": 2000
+    },
+    "ann_tran": {
+      "mean": 2000.0,
+      "min": 2000,
+      "max": 2000
+    },
+    "ann_exp": {
+      "mean": 2000.0,
+      "min": 2000,
+      "max": 2000
+    }
+  },
+  "files_generated": {
+    "training_curves": "training_curves_20260725_072039.csv",
+    "training_stats": "training_stats_20260725_072039.csv",
+    "eval_detailed": "eval_detailed_20260725_072039.csv",
+    "eval_summary": "eval_summary_20260725_072039.csv",
+    "gap_analysis": "gap_analysis_20260725_072039.csv",
+    "stats_summary": "stats_summary_20260725_072039.csv",
+    "variance_analysis": "variance_analysis_20260725_072039.csv",
+    "metadata": "metadata_20260725_072039.json"
+  },
+  "data_stats": {
+    "total_training_data_points": 140000,
+    "total_eval_data_points": 28000,
+    "total_gap_analyses": 70
+  }
+}

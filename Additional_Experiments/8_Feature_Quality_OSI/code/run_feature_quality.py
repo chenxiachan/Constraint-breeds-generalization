@@ -1,21 +1,15 @@
 """
-v1_ablation_study_with_logging.py - Ablation Study: Dynamic Encoding vs Static Input
+Rebuttal Experiment 5: Feature Quality Metrics (extended from 0_main_Fig2.py)
 
-Features:
-1. Training metrics logging per encoder/epoch (CSV)
-2. Comprehensive comparison table (CSV)
-3. Statistical analysis report
+Original Exp2 ablation study + two new direct feature quality metrics:
+  1. Orientation Selectivity Index (OSI): 2D FFT-based direction selectivity
+  2. Downstream Linear Classification: bottleneck features → CIFAR-10 patch label prediction
 
-Comparison Design:
-1. Baseline: Static patch input
-2. Random Temporal: Random temporal expansion
-3. Linear Temporal: Linear interpolation
-4. Poisson Encoding: Standard Poisson spike coding
-5. Dynamic Dissipative (delta=10)
-6. Dynamic Critical (delta=0)
-7. Dynamic Expansive (delta=-1.5)
+Addresses r35F Q5: "Can you strengthen Experiment 2 with a more direct measure
+of feature quality than only the weight standard deviation?"
 """
 
+import sys
 import os
 import csv
 import json
@@ -30,13 +24,124 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 
-# Reuse existing tools (removed analyze_receptive_fields)
+# Path setup
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_DIR = os.path.join(BASE_DIR, '..', '..', '..')
+EXP2_CODE_DIR = os.path.join(REPO_DIR, '1_Experiment 2', 'code')
+sys.path.insert(0, EXP2_CODE_DIR)
+
 from core.v1_receptive_field_learning import (
     NaturalImagePatches,
     V1_SNN_Autoencoder,
     ensure_dir,
     align_encoded_features
 )
+
+
+# ============================================================
+# NEW: Feature Quality Metrics
+# ============================================================
+
+def compute_osi(weights, patch_size):
+    """
+    Orientation Selectivity Index via 2D FFT power spectrum.
+    OSI = 1: perfectly oriented (Gabor-like), OSI = 0: isotropic (noise).
+    """
+    n_neurons = weights.shape[0]
+    osi_values = np.zeros(n_neurons)
+
+    cy, cx = patch_size // 2, patch_size // 2
+    Y, X = np.mgrid[:patch_size, :patch_size]
+    R = np.sqrt((X - cx)**2 + (Y - cy)**2)
+    Theta = np.arctan2(Y - cy, X - cx)
+    mask = R > 1.5
+
+    for i in range(n_neurons):
+        rf = weights[i].reshape(patch_size, patch_size)
+        fft_shift = np.fft.fftshift(np.fft.fft2(rf))
+        power = np.abs(fft_shift) ** 2
+
+        if mask.sum() < 10:
+            continue
+
+        power_m = power[mask]
+        theta_m = Theta[mask]
+        total_p = power_m.sum()
+        if total_p < 1e-15:
+            continue
+
+        mean_cos = np.sum(power_m * np.cos(2 * theta_m)) / total_p
+        mean_sin = np.sum(power_m * np.sin(2 * theta_m)) / total_p
+        osi_values[i] = np.sqrt(mean_cos**2 + mean_sin**2)
+
+    return osi_values, float(np.mean(osi_values)), float(np.std(osi_values))
+
+
+def compute_downstream_accuracy(model, dataloader, encoder, delta, device,
+                                patch_size, enc_align_mode='mean'):
+    """
+    Extract bottleneck spike features → linear classifier on CIFAR-10 patch labels.
+    """
+    from sklearn.linear_model import SGDClassifier
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.model_selection import train_test_split
+
+    model.eval()
+    features_list, labels_list = [], []
+
+    with torch.no_grad():
+        for patches, labels in dataloader:
+            patches = patches.to(device)
+
+            if hasattr(encoder, 'encode'):
+                if delta is not None:
+                    try:
+                        encoded = encoder.encode(patches, delta, device=device)
+                    except TypeError:
+                        encoded = encoder.encode(patches, device=device)
+                else:
+                    encoded = encoder.encode(patches, device=device)
+            else:
+                encoded = patches.unsqueeze(1).repeat(1, model.num_steps, 1)
+
+            if encoded.dim() == 2:
+                encoded = encoded.unsqueeze(1)
+            if encoded.shape[-1] != patches.shape[-1]:
+                encoded = align_encoded_features(encoded, patches, mode=enc_align_mode)
+
+            _, spikes_sum = model(encoded)
+            features_list.append(spikes_sum.cpu().numpy())
+            labels_list.append(labels.numpy())
+
+    features = np.nan_to_num(np.concatenate(features_list), nan=0.0, posinf=0.0, neginf=0.0)
+    labels = np.concatenate(labels_list)
+
+    # Skip if degenerate
+    active = np.sum(np.var(features, axis=0) > 1e-10)
+    if active < 2:
+        return 10.0  # chance level
+
+    good = np.var(features, axis=0) > 1e-10
+    features = features[:, good]
+
+    try:
+        X_tr, X_te, y_tr, y_te = train_test_split(
+            features, labels, test_size=0.3, random_state=42, stratify=labels
+        )
+    except ValueError:
+        X_tr, X_te, y_tr, y_te = train_test_split(
+            features, labels, test_size=0.3, random_state=42
+        )
+    scaler = StandardScaler()
+    X_tr = np.clip(scaler.fit_transform(X_tr), -5, 5)
+    X_te = np.clip(scaler.transform(X_te), -5, 5)
+
+    try:
+        clf = SGDClassifier(loss='log_loss', max_iter=500, random_state=42, tol=1e-3)
+        clf.fit(X_tr, y_tr)
+        return float(clf.score(X_te, y_te) * 100)
+    except Exception:
+        return 10.0
 
 
 # ============================================================
@@ -123,6 +228,8 @@ def train_v1_with_encoder(model,
                           enc_align_mode='mean',
                           save_dir='./results'):
     """Unified training loop with logging."""
+    from core.v1_receptive_field_learning import align_encoded_features
+
     model = model.to(device)
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
     recon_criterion = nn.MSELoss()
@@ -229,7 +336,7 @@ def run_ablation_study(patch_size=16,
 
     # Setup directories
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    main_results_dir = f'./results/ablation_{timestamp}'
+    main_results_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'output', f'ablation_{timestamp}')
     ensure_dir(main_results_dir)
 
     # Save Config
@@ -375,7 +482,7 @@ def run_ablation_study(patch_size=16,
     print("Comprehensive Comparison")
     print("=" * 60)
 
-    compare_all_encoders_with_logging(results, patch_size, main_results_dir)
+    compare_all_encoders_with_logging(results, patch_size, main_results_dir, dataloader=dataloader, device=device)
 
     # 5. Generate Report
     generate_ablation_report(results, main_results_dir, config)
@@ -411,7 +518,7 @@ def plot_training_curves(history, encoder_name, save_dir):
     plt.close()
 
 
-def compare_all_encoders_with_logging(results, patch_size, save_dir):
+def compare_all_encoders_with_logging(results, patch_size, save_dir, dataloader=None, device='cpu'):
     """Compares all encoders with logging."""
     ensure_dir(save_dir)
 
@@ -477,11 +584,11 @@ def compare_all_encoders_with_logging(results, patch_size, save_dir):
     plt.close()
 
     # 3. Save Detailed CSV
-    save_detailed_comparison_csv(results, save_dir)
+    save_detailed_comparison_csv(results, save_dir, dataloader=dataloader, patch_size=patch_size, device=device)
 
 
-def save_detailed_comparison_csv(results, save_dir):
-    """Saves detailed comparison results to CSV."""
+def save_detailed_comparison_csv(results, save_dir, dataloader=None, patch_size=16, device='cpu'):
+    """Saves detailed comparison results to CSV (with new feature quality metrics)."""
 
     # CSV 1: Comparison Summary
     comparison_data = []
@@ -496,11 +603,23 @@ def save_detailed_comparison_csv(results, save_dir):
         final_sparse = history['sparse_loss'][-1]
         final_total = history['total_loss'][-1]
 
-        # RF Metrics
+        # RF Metrics (original)
         rf_std = np.std(weights)
         rf_mean = np.mean(np.abs(weights))
         rf_max = np.max(np.abs(weights))
         rf_min = np.min(np.abs(weights))
+
+        # NEW: OSI
+        _, osi_mean, osi_std = compute_osi(weights, patch_size)
+
+        # NEW: Downstream accuracy
+        encoder_obj = result['encoder']
+        model_obj = result['model']
+        downstream_acc = compute_downstream_accuracy(
+            model_obj, dataloader, encoder_obj, delta, device,
+            patch_size, enc_align_mode='mean'
+        )
+        print(f"  {name}: OSI={osi_mean:.4f}, downstream_acc={downstream_acc:.1f}%")
 
         comparison_data.append({
             'encoder': name,
@@ -512,6 +631,9 @@ def save_detailed_comparison_csv(results, save_dir):
             'rf_mean_abs': rf_mean,
             'rf_max_abs': rf_max,
             'rf_min_abs': rf_min,
+            'osi_mean': osi_mean,
+            'osi_std': osi_std,
+            'downstream_acc': downstream_acc,
         })
 
     df_comparison = pd.DataFrame(comparison_data)
@@ -525,8 +647,8 @@ def save_detailed_comparison_csv(results, save_dir):
     print("\n" + "=" * 80)
     print("QUANTITATIVE COMPARISON")
     print("=" * 80)
-    df_display = df_comparison[['encoder', 'final_recon_loss', 'final_sparse_loss', 'rf_std']]
-    df_display.columns = ['Encoder', 'Final Recon', 'Final Sparse', 'RF Quality']
+    df_display = df_comparison[['encoder', 'final_recon_loss', 'final_sparse_loss', 'rf_std', 'osi_mean', 'downstream_acc']]
+    df_display.columns = ['Encoder', 'Final Recon', 'Final Sparse', 'RF Std', 'OSI', 'Downstream %']
     print(df_display.to_string(index=False))
     print("=" * 80)
 

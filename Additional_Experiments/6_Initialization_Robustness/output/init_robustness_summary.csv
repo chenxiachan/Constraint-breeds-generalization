@@ -1,0 +1,6 @@
+init_variant,n_runs,id_acc_mean,id_acc_std,ood_acc_mean,ood_acc_std
+"baseline_(v,0.2v,-v)",5,94.83,1.94,90.33,2.45
+"x_only_(v,0,0)",5,94.39,0.85,87.58,4.61
+"sym_mix_(v,0.5v,-0.5v)",5,94.91,0.63,90.14,1.86
+"sign_flip_(v,-0.2v,v)",5,95.13,1.66,89.43,2.67
+"scaled_(0.5v,0.1v,-0.5v)",5,94.17,2.3,90.16,2.57
