@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Rebuttal Experiment 1: Disentangling Dissipative Dynamics from Generic Temporal Smoothing
+Control experiment: Disentangling Dissipative Dynamics from Generic Temporal Smoothing
 
-Key question (ozMg Q2, o7Bu, r35F Q1):
+Key question:
   Does generalization arise from the specific nonlinear dynamics, or from generic temporal
   smoothing / low-pass filtering / signal degeneration?
 
@@ -84,7 +84,7 @@ class DuffingEncoder:
 class ExponentialDecayEncoder:
     """
     3-channel exponential decay from initial conditions matching Duffing.
-    Directly tests o7Bu's degeneration hypothesis.
+    Directly tests the degeneration hypothesis.
     """
 
     def __init__(self, num_steps=30, tmax=4.0):

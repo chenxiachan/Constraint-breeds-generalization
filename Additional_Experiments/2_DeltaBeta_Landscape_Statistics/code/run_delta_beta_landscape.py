@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Rebuttal Experiment 3: delta-beta 2D Joint Landscape
+Supplementary experiment: delta-beta 2D Joint Landscape
 
-Key question (mLxH Q2):
+Key question:
   What if we simultaneously adjust delta (encoding-level dissipation) and beta
   (architecture-level dissipation) in Experiment 1? Does the "transition regime"
   remain valid for all betas, or for a particular beta?

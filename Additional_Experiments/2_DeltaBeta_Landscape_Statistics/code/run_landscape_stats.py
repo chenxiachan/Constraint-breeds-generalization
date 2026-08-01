@@ -2,7 +2,7 @@
 """
 NeurIPS Rebuttal ExpE: Statistical analysis of the delta-beta joint landscape.
 
-Data: ICML rebuttal Rebuttal_Joint_landscape/output/delta_beta_landscape.json
+Data: ../output/delta_beta_landscape.json
       (5 delta x 5 beta x 5 runs = 125 per-run records; no re-running needed)
 
 Two questions:

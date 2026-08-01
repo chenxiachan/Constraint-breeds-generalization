@@ -1,0 +1,13 @@
+train_condition,test_family,n_runs,n_cells,acc_mean,acc_std,acc_mean_excl_id,acc_std_excl_id
+Duffing_transition,Duffing,10,12,90.77,2.33,90.44,2.43
+Duffing_transition,ExpDecay,10,5,59.11,6.09,59.11,6.09
+Duffing_transition,Lorenz,10,5,45.82,2.24,45.82,2.24
+Lorenz_dissipative,Duffing,10,12,83.98,2.19,83.98,2.19
+Lorenz_dissipative,ExpDecay,10,5,69.45,5.04,69.45,5.04
+Lorenz_dissipative,Lorenz,10,5,69.69,4.28,63.6,5.27
+ExpDecay,Duffing,10,12,87.67,2.66,87.67,2.66
+ExpDecay,ExpDecay,10,5,89.23,1.73,88.36,1.74
+ExpDecay,Lorenz,10,5,69.68,4.24,69.68,4.24
+Gaussian,Duffing,10,12,65.52,7.21,65.52,7.21
+Gaussian,ExpDecay,10,5,45.03,7.4,45.03,7.4
+Gaussian,Lorenz,10,5,62.04,3.78,62.04,3.78

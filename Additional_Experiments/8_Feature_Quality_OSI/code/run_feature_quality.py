@@ -1,11 +1,11 @@
 """
-Rebuttal Experiment 5: Feature Quality Metrics (extended from 0_main_Fig2.py)
+Supplementary experiment: Feature Quality Metrics (extended from 0_main_Fig2.py)
 
 Original Exp2 ablation study + two new direct feature quality metrics:
   1. Orientation Selectivity Index (OSI): 2D FFT-based direction selectivity
   2. Downstream Linear Classification: bottleneck features → CIFAR-10 patch label prediction
 
-Addresses r35F Q5: "Can you strengthen Experiment 2 with a more direct measure
+Addresses the reviewer question: "Can you strengthen Experiment 2 with a more direct measure
 of feature quality than only the weight standard deviation?"
 """
 

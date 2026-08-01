@@ -8,7 +8,7 @@ Addresses AC priority #1 (Reviewer oBwj):
    baselines with matched temporal filtering - and justify why SNNs are necessary."
 
 Design: all architectures receive IDENTICAL Duffing-encoded input (B, T, 192) and
-identical training protocol (faithful to original 0_main_Fig1.py / ICML
+identical training protocol (faithful to original 0_main_Fig1.py /
 run_lowpass_control.py paradigm). The architecture ladder decomposes the LIF neuron:
 
   1. SNN            : leaky integration + spike nonlinearity + reset   (reference)
@@ -60,7 +60,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
 # ============================================================
-# Duffing encoder (verbatim from ICML run_lowpass_control.py,
+# Duffing encoder (verbatim from run_lowpass_control.py,
 # which itself mirrors original DynamicEncoder / EncodingConfig)
 # ============================================================
 
@@ -167,7 +167,7 @@ class EMAPrefilterAvgMLP(nn.Module):
 
 
 # ============================================================
-# Generic trainer (mirrors ICML lowpass Trainer; handles both
+# Generic trainer (mirrors the lowpass-control Trainer; handles both
 # SNN-style (out, spikes) and plain-out models)
 # ============================================================
 
@@ -271,7 +271,7 @@ def main():
                           else 'cpu')
     print(f"Device: {DEVICE}", flush=True)
 
-    # --- Config (identical to original Exp1 / ICML lowpass control) ---
+    # --- Config (identical to original Exp1 / the lowpass control) ---
     NUM_STEPS = 30
     TMAX = 4.0
     HIDDEN_DIM = 32

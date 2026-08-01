@@ -23,7 +23,7 @@ loss, same RF metrics) and swap ONLY the neuron:
 Everything else — encoder/decoder shapes, forward-over-time structure, the
 reconstruction + sparsity loss with lambda=0.1, and the RF metrics
 (sigma_RF = std of encoder weights; OSI = 2D-FFT orientation selectivity) — is
-IMPORTED and reused, not reimplemented, from the authoritative ICML feature-
+IMPORTED and reused, not reimplemented, from the authoritative feature-
 quality script.
 
 Sources reused verbatim (imported, not copied):
@@ -39,7 +39,7 @@ Only V1_ReLU_Autoencoder and the driver/CLI below are new.
 Conditions (relu, full run): Baseline (static), Dynamic_Transition (delta=2.0),
 Dynamic_Expansive (delta=-1.5), Dynamic_Dissipative (delta=10.0); 3 seeds each
 = 12 models. Plus an SNN anchor (`--model snn`) on Dynamic_Transition x 3 seeds
-= 3 models, to verify the imported pipeline reproduces the ICML result.
+= 3 models, to verify the imported pipeline reproduces the original result.
 
 Usage
 -----
@@ -99,13 +99,13 @@ import run_feature_quality as rfq  # noqa: E402
 
 
 # ------------------------------------------------------------------
-# Experiment constants (identical to ICML feature-quality config)
+# Experiment constants (identical to the feature-quality config)
 # ------------------------------------------------------------------
 PATCH_SIZE = 16
 INPUT_DIM = PATCH_SIZE * PATCH_SIZE   # 256
 HIDDEN_DIM = 128
 NUM_STEPS = 5
-BETA = 0.9                            # SNN anchor leak (matches ICML config)
+BETA = 0.9                            # SNN anchor leak (matches the original config)
 BATCH_SIZE = 64
 LAMBDA_SPARSE = 0.1
 NUM_PATCHES_FULL = 5000
@@ -190,7 +190,7 @@ class CachedPatches(NaturalImagePatches):
 
     _extract_patches and _preprocess_patches are inherited unchanged — the
     authoritative pipeline (RGB->grayscale mean, per-patch demean, L2-norm; no
-    whitening, matching use_whitening=False in the ICML config).
+    whitening, matching use_whitening=False in the original config).
     """
 
     def __init__(self, num_patches, patch_size, data_root):
@@ -303,7 +303,7 @@ def main():
     parser = argparse.ArgumentParser(description="ExpF: non-spiking AE control for Exp 2")
     parser.add_argument("--model", choices=["relu", "snn"], default="relu",
                         help="relu = non-spiking control (12 models); "
-                             "snn = ICML-reproduction anchor on Transition (3 models)")
+                             "snn = reproduction anchor on Transition (3 models)")
     parser.add_argument("--smoke", action="store_true",
                         help="1 condition (Transition) x 1 seed x 2 epochs x 500 patches")
     args = parser.parse_args()
